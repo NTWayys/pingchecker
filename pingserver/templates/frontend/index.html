@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="10">
+    <title>Server List</title>
+</head>
+<body>
+    <p>This page updates every 10s and will update the DB. The db updates automatically every minute if not on the page, status is updated whether you here or not.</p>
+    <p>To add to the list go to asdfghjkl.co.za/view/Your domain, this will automatically add it</p>
+    {% for server in context %}
+    <h3>{{server.address}}</h3>
+    <p>{{server.notes}}</p>
+    <p>{{server.status}}</p>
+    {% endfor %}
+    <h1>test</h1>
+</body>
+</html>
