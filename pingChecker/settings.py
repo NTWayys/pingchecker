@@ -49,6 +49,7 @@ Q_CLUSTER = {
     'retry': 60,
     'queue_limit': 50,
     'bulk': 10,
+    'save_limit': 20,
 }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

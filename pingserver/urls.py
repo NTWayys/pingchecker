@@ -19,11 +19,5 @@ from . import views
 urlpatterns = [
     path('server/', views.index, name='index'),
     path('server/view/<str:domain>/', views.getDomain),
-    path('server/routes/', views.getRoutes),
-    path('server/list/', views.getServers),
-    path('server/add/', views.addServer),
-    path('server/<int:id>/', views.updateServers),
-    path('server/<int:id>/update/', views.updateServers),
-    path('server/<int:id>/delete/', views.updateServers),
-
+    path('server/api/<str:domain>/', views.getDomainFromAPI),
 ]

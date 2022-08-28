@@ -18,7 +18,6 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('pingserver.urls')),
 
-
+    path('', include('pingserver.urls'), name='pingchecker'),
 ]
