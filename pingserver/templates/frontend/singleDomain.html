@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="refresh" content="60" />
+    <link rel="stylesheet" href={% static "./css/styles.css" %} />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <title>Server List</title>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <p class="site-logo">Home</p>
+        <div class="search-function">
+          <input
+            type="search"
+            name="domainSearch"
+            placeholder="Search for Domain"
+            id="domain-search-box"
+          />
+          <button class="search-button">Search</button>
+        </div>
+        <a>Login</a>
+      </div>
+    </nav>
+
+    <section class="domain-info">
+      <div class="container">
+        <div class="website-info">
+          <p>
+            The domain updates once a minute and will continue to update even if
+            not on the page
+          </p>
+        </div>
+        <div class="domain-info">
+          <h1>{{context.address}}</h1>
+        </div>
+        <div class="domain-notes">
+          <div class="down-time">
+            <div class="hourly-ms">
+              <p class="category-header">Rolling average of the hourly MS</p>
+              <div>
+                <p>{{context.statpings}}</p>
+              </div>
+              <p class="category-header">Last Ping (1 Hour / per minute)</p>
+              <div class="rolling-pings">
+                {% for i in context.rollingpings %}
+                <p>Time = {{i}}ms</p>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="last-down-time">
+              <p class="category-header">Down time history</p>
+              <div>
+                <p>{{context.downpings}}</p>
+              </div>
+            </div>
+          </div>
+          <p class="date-added">Added to monitor on {{context.dateadded}}</p>
+          <div
+            style="display: none"
+            class="hidethem"
+            id="graphData"
+            data-name="{{ context.rollingpings }}"
+          ></div>
+          <canvas
+            id="myChart"
+            style="width: 100%; max-width: 900px; min-height: 20rem"
+          ></canvas>
+        </div>
+
+        <div class="domain-whois-info">
+          <p>{{context.whoisdata}}</p>
+        </div>
+      </div>
+    </section>
+
+    <div>
+      <!-- <p>Server was last down never</p>
+      <p>
+        wayys.co.za is online, Minimum = 26ms, Maximum = 26ms, Average = 26ms
+      </p> -->
+    </div>
+  </body>
+  <script>
+    const graphData = JSON.parse(
+      document.getElementById("graphData").dataset.name
+    );
+    const xValues = Array.from(Array(60).keys());
+    new Chart("myChart", {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets: [
+          {
+            data: graphData,
+            borderColor: "blue",
+            fill: false,
+          },
+        ],
+      },
+      options: {
+        legend: { display: false },
+        scales: {
+          ticks: { min: 0 },
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+  </script>
+</html>

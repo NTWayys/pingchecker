@@ -1,0 +1,137 @@
+$phase1: #000000;
+$phase2: #111111;
+$phase3: #222222;
+$phase4: #333333;
+$phase5: #ababad;
+$phase6: #eeeeee;
+
+$purps: #b21aff;
+$pearlescent: #21ebff;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 1920px;
+  margin: 0 auto;
+  padding: 0 5rem;
+}
+
+.navbar {
+  background: $phase1;
+  color: $phase6;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    .search-function {
+      width: 25%;
+      display: flex;
+      button,
+      input {
+        height: 1.6rem;
+        border-style: none;
+        padding: 0 1rem;
+      }
+      button {
+        border-radius: 0 20px 20px 0;
+      }
+      input {
+        border-radius: 20px 0 0 20px;
+        width: 100%;
+        text-indent: 0.5rem;
+        &:focus,
+        &:focus + .search-button {
+          outline-style: none;
+          box-shadow: 0 0 0 2px $pearlescent;
+        }
+      }
+    }
+  }
+  .site-logo {
+    font-size: 2rem;
+    padding: 0.5rem 0;
+  }
+}
+body {
+  background: $phase2;
+  color: $phase6;
+}
+
+.domain-info {
+  .container {
+    width: 1366px;
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(3, auto);
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+
+    > * {
+      // border: 1px dotted red;
+    }
+    .website-info {
+      grid-area: 1 / 1 / 2 / 4;
+      margin-bottom: 3rem;
+    }
+
+    .domain-info {
+      grid-area: 2 / 1 / 3 / 2;
+
+      h1 {
+        margin: 0;
+        font-size: 3rem;
+      }
+    }
+    .domain-notes {
+      grid-area: 3 / 1 / 4 / 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 20rem;
+
+      padding: 2rem 0;
+
+      .down-time {
+        display: flex;
+        justify-content: space-evenly;
+        .hourly-ms {
+          .rolling-pings {
+            line-height: 2rem;
+            max-height: 20rem;
+            overflow-y: scroll;
+          }
+        }
+        > div {
+          flex-grow: 0;
+
+          background: $phase3;
+          padding: 1rem;
+          &:first-of-type {
+            width: 50%;
+          }
+          &:nth-of-type(2) {
+            width: 40%;
+          }
+
+          .category-header {
+            text-align: center;
+            margin-bottom: 1rem;
+            &:not(:first-child) {
+              padding-top: 1rem;
+              border-top: 1px solid $phase1;
+              margin-top: 2rem;
+            }
+          }
+        }
+      }
+    }
+    .domain-whois-info {
+      grid-area: 2 / 2 / 4 / 3;
+    }
+  }
+}
