@@ -14,7 +14,7 @@
   <body>
     <nav class="navbar">
       <div class="container">
-        <p class="site-logo">Home</p>
+        <a href="#" class="site-logo">Home</a>
         <div class="search-function">
           <input
             type="search"
@@ -24,7 +24,7 @@
           />
           <button class="search-button">Search</button>
         </div>
-        <a>Login</a>
+        <a href="#">Login</a>
       </div>
     </nav>
 
@@ -36,8 +36,11 @@
             not on the page
           </p>
         </div>
-        <div class="domain-info">
-          <h1>{{context.address}}</h1>
+        <div class="address-info">
+          <h1>
+            <a href="https://{{context.address}}"> {{context.address}} </a>
+          </h1>
+          <p class="date-added">Added to monitor on {{context.dateadded}}</p>
         </div>
         <div class="domain-notes">
           <div class="down-time">
@@ -48,19 +51,22 @@
               </div>
               <p class="category-header">Last Ping (1 Hour / per minute)</p>
               <div class="rolling-pings">
-                {% for i in context.rollingpings %}
-                <p>Time = {{i}}ms</p>
-                {% endfor %}
+                <div class="darker-back">
+                  {% for i in context.rollingpings %}
+                  <p>Time = {{i}}ms</p>
+                  {% endfor %}
+                </div>
               </div>
             </div>
             <div class="last-down-time">
               <p class="category-header">Down time history</p>
-              <div>
+
+              <div class="darker-back">
                 <p>{{context.downpings}}</p>
               </div>
             </div>
           </div>
-          <p class="date-added">Added to monitor on {{context.dateadded}}</p>
+
           <div
             style="display: none"
             class="hidethem"
@@ -69,7 +75,7 @@
           ></div>
           <canvas
             id="myChart"
-            style="width: 100%; max-width: 900px; min-height: 20rem"
+            style="width: 100%; min-height: 10rem; max-height: 15rem"
           ></canvas>
         </div>
 
@@ -78,13 +84,7 @@
         </div>
       </div>
     </section>
-
-    <div>
-      <!-- <p>Server was last down never</p>
-      <p>
-        wayys.co.za is online, Minimum = 26ms, Maximum = 26ms, Average = 26ms
-      </p> -->
-    </div>
+    <footer><p>Wayys.co.za</p></footer>
   </body>
   <script>
     const graphData = JSON.parse(
@@ -106,7 +106,9 @@
       options: {
         legend: { display: false },
         scales: {
-          ticks: { min: 0 },
+          ticks: {
+            color: "red",
+          },
           y: {
             beginAtZero: true,
           },

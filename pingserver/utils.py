@@ -86,7 +86,7 @@ def updateServerStatus():
                     minPing = str(min(rollingpingsarr))
                     maxPing = str(max(rollingpingsarr))
                     updateServer(
-                        {"rollingpings": rollingpingsarr, "statpings": "Minimum = " + minPing + "ms, Maximum = " + maxPing + "ms, Average = " + avgPing + "ms"}, targetDomain.id)
+                        {"rollingpings": rollingpingsarr, "statpings": "Minimum = " + minPing + "ms, Maximum = " + maxPing + "ms, Average = " + avgPing + "ms."}, targetDomain.id)
         elif any(s in osrequest for s in ("Destination host unreachable", "could not find host", "Request timed out")):
             reply = osrequest
             updateServer({"rollingpings":  rollingpingsarr, "downpings":  "Server was last down at " + str(

@@ -12,9 +12,16 @@ $pearlescent: #21ebff;
   padding: 0;
   box-sizing: border-box;
 }
+a {
+  color: $pearlescent;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
 
 .container {
-  width: 1920px;
+  max-width: 1920px;
   margin: 0 auto;
   padding: 0 5rem;
 }
@@ -79,11 +86,12 @@ body {
       margin-bottom: 3rem;
     }
 
-    .domain-info {
+    .address-info {
       grid-area: 2 / 1 / 3 / 2;
 
+      margin: 0;
       h1 {
-        margin: 0;
+        margin-bottom: 1rem;
         font-size: 3rem;
       }
     }
@@ -92,9 +100,8 @@ body {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      height: 20rem;
 
-      padding: 2rem 0;
+      padding: 1rem 0;
 
       .down-time {
         display: flex;
@@ -129,9 +136,27 @@ body {
           }
         }
       }
+      #myChart {
+        margin-top: 2rem;
+      }
     }
     .domain-whois-info {
       grid-area: 2 / 2 / 4 / 3;
     }
   }
+}
+.darker-back {
+  background: $phase2;
+  height: 90%;
+  padding: 1rem;
+  p {
+    border-bottom: 1px solid $phase4;
+  }
+}
+footer {
+  margin-top: 2rem;
+  width: 100%;
+  padding: 1.5rem;
+  background: $phase1;
+  text-align: center;
 }
